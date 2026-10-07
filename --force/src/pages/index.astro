@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Sublime | A receita para uma gestão mais doce">
+  
+
+  <header class="header-container">
+
+    <!-- LOGO SUBLIME COM FOTO -->
+    <div class="logo-area">
+      <div class="logo-circulo">
+
+        <img 
+          src='../src/assets/Sublime_logo.png' 
+          alt="Logo Sublime" 
+          class="logo-foto"
+        />
+
+      </div>
+      <span>Sublime</span>
+    </div>
+
+    <nav class="menu-navegacao">
+      <a href="#funcionalidades">Funcionalidades</a>
+      <a href="#como-funciona">Como Funciona</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#preco">Preço</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="header-botoes">
+      <a href="#login" class="link-entrar">Entrar</a>
+      <a href="#cadastro" class="botao-gratis">Começar Grátis</a>
+    </div>
+  </header>
+
+  <!-- SEÇÃO HERO -->
+  <main class="hero-section">
+    
+    <div class="hero-conteudo">
+      <div class="tag-erp">
+        O primeiro Sistema Inteligente feito para Fábricas de confeitaria
+      </div>
+
+      <h1 class="hero-titulo">
+        A receita para uma <br />
+        gestão mais doce
+      </h1>
+
+      <p class="hero-descricao">
+        Controle suas receitas, organize encomendas, gerencie o estoque de insumos e tenha clareza do seu fluxo financeiro in uma única plataforma feita sob medida para confeitarias e ateliês de panificação.
+      </p>
+
+      <div class="hero-botoes">
+        <a href="#cadastro" class="botao-comecar">Começar agora</a>
+        <a href="#demonstracao" class="botao-demonstracao">Ver demonstração</a>
+      </div>
+    </div>
+
+    <!-- COLUNA DA DIREITA: Estrutura Interativa -->
+    <div class="hero-imagem-area" id="boxInterativa">
+      <div class="card-interativo-wrap" id="cardTilt">
+        
+        <!-- Card Flutuante 1: Faturamento -->
+        <div class="badge-flutuante badge-faturamento" id="badgeFat">
+          <span class="sub">Faturamento hoje</span>
+          <span class="val">R\$ 2.490</span>
+        </div>
+
+        <!-- Foto Principal -->
+        <div class="container-foto">
+       
+          <img 
+            src='../src/assets/images.jpg' 
+            alt="Confeitaria de Alto Padrão - Sublime" 
+          />
+        </div>
+
+        <!-- Card Flutuante 2: Pedido -->
+        <div class="badge-flutuante badge-pedido" id="badgePed">
+          <span class="status">Pedido confirmado</span>
+          <span class="info">Cupcakes R\$ 89,00</span>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- EFEITOS INTERATIVOS -->
+  <script>
+    const box = document.getElementById('boxInterativa');
+    const card = document.getElementById('cardTilt');
+    const badgeFat = document.getElementById('badgeFat');
+    const badgePed = document.getElementById('badgePed');
+
+    if (box && card && badgeFat && badgePed) {
+      box.addEventListener('mousemove', (e) => {
+        const rect = box.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((centerY - y) / centerY) * 15;
+        const rotateY = ((x - centerX) / centerX) * 15;
+        
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        
+        badgeFat.style.transform = `translate3d(${-rotateY * 1.5}px, ${-rotateX * 1.5}px, 50px)`;
+        badgePed.style.transform = `translate3d(${rotateY * 2}px, ${rotateX * 2}px, 70px)`;
+      });
+
+      box.addEventListener('mouseleave', () => {
+        card.style.transition = 'transform 0.5s ease';
+        badgeFat.style.transition = 'transform 0.5s ease';
+        badgePed.style.transition = 'transform 0.5s ease';
+        
+        card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        badgeFat.style.transform = 'translate3d(0, 0, 50px)';
+        badgePed.style.transform = 'translate3d(0, 0, 70px)';
+      });
+
+      box.addEventListener('mouseenter', () => {
+        card.style.transition = 'none';
+        badgeFat.style.transition = 'none';
+        badgePed.style.transition = 'none';
+      });
+    }
+  </script>
+
+</Layout>
