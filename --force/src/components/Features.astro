@@ -1,0 +1,281 @@
+---
+const features = [
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />`,
+    tag: 'ESSENCIAL',
+    title: 'Gestão de Receitas',
+    description: 'Ficha técnica automatizada. Altere o rendimento da receita e o sistema recalcula todos os custos e ingredientes instantaneamente.'
+  },
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />`,
+    tag: 'INTELIGENTE',
+    title: 'Controle de Estoque',
+    description: 'Baixa automática de insumos a cada venda. Nunca mais fique sem farinha, açúcar ou embalagens na véspera de uma grande entrega.'
+  },
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />`,
+    tag: null,
+    title: 'Pedidos e Encomendas',
+    description: 'Painel de controle para organizar datas de entrega, retiradas, status de produção e detalhes personalizados de cada cliente.'
+  },
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v10a2 2 0 002 2z" />`,
+    tag: null,
+    title: 'Financeiro Integrado',
+    description: 'Acompanhe entradas, pagamentos parciais (sinal), custos operacionais e margem de lucro real de cada bolo ou doce vendido.'
+  },
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />`,
+    tag: 'NOVO',
+    title: 'Relatórios de Desempenho',
+    description: 'Descubra quais são seus produtos mais vendidos e veja sua evolução mensal de faturamento de forma simples e visual.'
+  },
+  {
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />`,
+    tag: null,
+    title: 'Agenda de Produção',
+    description: 'Cronograma visual diário e semanal para organizar o fluxo do forno e montagem, evitando gargalos e atrasos de encomendas.'
+  }
+];
+---
+
+<section id="funcionalidades" class="features-section">
+  
+  <!-- TRANSIÇÃO 1: Curva fluida SVG no topo da seção -->
+  <div class="curve-divider">
+    <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,32L80,42.7C160,53,320,75,480,80C640,85,800,75,960,58.7C1120,43,1280,21,1360,10.7L1440,0L1440,120L0,120Z" fill="#FAF7F2"></path>
+    </svg>
+  </div>
+
+  <!-- TRANSIÇÃO 2: Esfera de luz difusa em tom rosado para dar destaque -->
+  <div class="bg-glow"></div>
+
+  <div class="features-container">
+    
+    <!-- Cabeçalho -->
+    <div class="features-header reveal-item">
+      <span class="features-subtitle">TUDO SOB CONTROLE</span>
+      <h2 class="features-title">O ingrediente secreto para crescer</h2>
+      <p class="features-description">
+        Esqueça planilhas confusas e cadernos rasgados. O Doce Gestão centraliza toda a operação da sua cozinha e atendimento em um painel elegante e fácil de usar.
+      </p>
+    </div>
+
+    <!-- Grid de Cards com Revelação Animada -->
+    <div class="features-grid">
+      {features.map((f, index) => (
+        <div class="feature-card reveal-item" style={`--delay: ${index * 0.1}s;`}>
+          <div class="card-header">
+            <div class="icon-wrapper">
+              <svg class="icon-svg" viewBox="0 0 24 24" Fragment set:html={f.icon} />
+            </div>
+            {f.tag && <span class="badge">{f.tag}</span>}
+          </div>
+
+          <h3 class="card-title">{f.title}</h3>
+          <p class="card-text">{f.description}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.features-section {
+  position: relative;
+  padding: 80px 24px;
+  background-color: transparent; /* Permite que a cor de fundo seja contínua */
+}
+
+  /* Divisor em Onda de Transição */
+  .curve-divider {
+    position: absolute;
+    top: -60px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    overflow: hidden;
+    line-height: 0;
+    pointer-events: none;
+  }
+
+  .curve-divider svg {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 60px;
+  }
+
+  /* Brilho Ambiente de Fundo (Glow Effect) */
+  .bg-glow {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(232, 206, 191, 0.35) 0%, rgba(250, 247, 242, 0) 70%);
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .features-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .features-header {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 60px auto;
+  }
+
+  .features-subtitle {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: #C08474;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .features-title {
+    font-size: 2.25rem;
+    font-family: serif;
+    font-weight: 700;
+    color: #3B1E1E;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .features-description {
+    color: #8C7A70;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  /* Cards com sombras suaves e transição */
+  .feature-card {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid #F0E6DE;
+    border-radius: 24px;
+    padding: 28px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    border-color: #E8CEBF;
+    box-shadow: 0 20px 40px rgba(59, 30, 30, 0.07);
+    background-color: #ffffff;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background-color: #F9ECE6;
+    color: #3B1E1E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover .icon-wrapper {
+    background-color: #3B1E1E;
+    color: #ffffff;
+    transform: scale(1.08);
+  }
+
+  .icon-svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    fill: none;
+  }
+
+  .badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #9E5745;
+    background-color: #F8E3DC;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-family: serif;
+    font-weight: 700;
+    color: #3B1E1E;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+  }
+
+  .feature-card:hover .card-title {
+    color: #9E5745;
+  }
+
+  .card-text {
+    color: #7A6B62;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* TRANSIÇÃO 3: Animação Scroll Reveal com IntersectionObserver */
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease var(--delay, 0s), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0s);
+  }
+
+  .reveal-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  // Animação ao rolar a página com JavaScript Puro
+  function initScrollReveal() {
+    const items = document.querySelectorAll('.reveal-item');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    items.forEach((item) => observer.observe(item));
+  }
+
+  document.addEventListener('astro:page-load', initScrollReveal);
+  initScrollReveal();
+</script>

@@ -1,37 +1,47 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Features from '../components/Features.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Team from '../components/Team.astro';
+
+// Importação direta das imagens dos assets locais
+import SublimeLogo from '../assets/Sublime_logo.png';
+import HeroImage from '../assets/images.jpg';
 ---
 
 <Layout title="Sublime | A receita para uma gestão mais doce">
-  
 
-  <header class="header-container">
+  <!-- CABEÇALHO / NAVBAR ORGANIZADO -->
+  <header class="header-container" id="mainHeader">
+    <div class="header-content">
+      
+      <!-- LOGO SUBLIME -->
+      <a href="#" class="logo-area">
+        <div class="logo-circulo">
+          <img 
+            src={SublimeLogo.src} 
+            alt="Logo Sublime" 
+            class="logo-foto"
+          />
+        </div>
+        <span class="logo-texto">Sublime</span>
+      </a>
 
-    <!-- LOGO SUBLIME COM FOTO -->
-    <div class="logo-area">
-      <div class="logo-circulo">
+      <!-- NAVEGAÇÃO PRINCIPAL -->
+      <nav class="menu-navegacao">
+        <a href="#funcionalidades" class="nav-link">Funcionalidades</a>
+        <a href="#como-funciona" class="nav-link">Como Funciona</a>
+        <a href="#depoimentos" class="nav-link">Depoimentos</a>
+        <a href="#preco" class="nav-link">Preço</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </nav>
 
-        <img 
-          src='../src/assets/Sublime_logo.png' 
-          alt="Logo Sublime" 
-          class="logo-foto"
-        />
-
+      <!-- BOTÕES DE AÇÃO DO HEADER -->
+      <div class="header-botoes">
+        <a href="#login" class="link-entrar">Entrar</a>
+        <a href="#cadastro" class="botao-gratis">Começar Grátis</a>
       </div>
-      <span>Sublime</span>
-    </div>
 
-    <nav class="menu-navegacao">
-      <a href="#funcionalidades">Funcionalidades</a>
-      <a href="#como-funciona">Como Funciona</a>
-      <a href="#depoimentos">Depoimentos</a>
-      <a href="#preco">Preço</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-
-    <div class="header-botoes">
-      <a href="#login" class="link-entrar">Entrar</a>
-      <a href="#cadastro" class="botao-gratis">Começar Grátis</a>
     </div>
   </header>
 
@@ -49,7 +59,7 @@ import Layout from '../layouts/Layout.astro';
       </h1>
 
       <p class="hero-descricao">
-        Controle suas receitas, organize encomendas, gerencie o estoque de insumos e tenha clareza do seu fluxo financeiro in uma única plataforma feita sob medida para confeitarias e ateliês de panificação.
+        Controle suas receitas, organize encomendas, gerencie o estoque de insumos e tenha clareza do seu fluxo financeiro em uma única plataforma feita sob medida para confeitarias e ateliês de panificação.
       </p>
 
       <div class="hero-botoes">
@@ -65,14 +75,13 @@ import Layout from '../layouts/Layout.astro';
         <!-- Card Flutuante 1: Faturamento -->
         <div class="badge-flutuante badge-faturamento" id="badgeFat">
           <span class="sub">Faturamento hoje</span>
-          <span class="val">R\$ 2.490</span>
+          <span class="val">R$ 2.490</span>
         </div>
 
         <!-- Foto Principal -->
         <div class="container-foto">
-       
           <img 
-            src='../src/assets/images.jpg' 
+            src={HeroImage.src} 
             alt="Confeitaria de Alto Padrão - Sublime" 
           />
         </div>
@@ -80,7 +89,7 @@ import Layout from '../layouts/Layout.astro';
         <!-- Card Flutuante 2: Pedido -->
         <div class="badge-flutuante badge-pedido" id="badgePed">
           <span class="status">Pedido confirmado</span>
-          <span class="info">Cupcakes R\$ 89,00</span>
+          <span class="info">Cupcakes R$ 89,00</span>
         </div>
 
       </div>
@@ -88,8 +97,187 @@ import Layout from '../layouts/Layout.astro';
 
   </main>
 
-  <!-- EFEITOS INTERATIVOS -->
-  <script>
+  <!-- SEÇÕES DO SITE -->
+  <Features />
+  <HowItWorks />
+  <Team />
+
+</Layout>
+
+<style>
+  /* ESTILOS DO CABEÇALHO */
+  .header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    box-sizing: border-box;
+    z-index: 1000;
+    background-color: rgba(250, 247, 242, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(232, 206, 191, 0.35);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .header-content {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    box-sizing: border-box;
+    transition: padding 0.3s ease;
+  }
+
+  .header-container.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 20px rgba(59, 30, 30, 0.08);
+  }
+
+  .header-container.scrolled .header-content {
+    padding: 10px 32px;
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #3B1E1E;
+    font-weight: 700;
+    font-size: 1.25rem;
+    font-family: serif;
+    flex-shrink: 0;
+  }
+
+  .logo-circulo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3B1E1E;
+  }
+
+  .logo-foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .menu-navegacao {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin: 0 24px;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: #615147;
+    font-size: 0.92rem;
+    font-weight: 500;
+    position: relative;
+    padding: 4px 0;
+    white-space: nowrap;
+    transition: color 0.25s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #9E5745;
+    border-radius: 2px;
+    transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-link:hover {
+    color: #3B1E1E;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .header-botoes {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .link-entrar {
+    text-decoration: none;
+    color: #3B1E1E;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 8px 16px;
+    border-radius: 20px;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+  }
+
+  .link-entrar:hover {
+    color: #9E5745;
+    background-color: rgba(158, 87, 69, 0.08);
+  }
+
+  .botao-gratis {
+    text-decoration: none;
+    background-color: #3B1E1E;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 10px 22px;
+    border-radius: 9999px;
+    box-shadow: 0 4px 12px rgba(59, 30, 30, 0.15);
+    white-space: nowrap;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                box-shadow 0.25s ease, 
+                background-color 0.25s ease;
+  }
+
+  .botao-gratis:hover {
+    background-color: #522B2B;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 18px rgba(59, 30, 30, 0.25);
+  }
+
+  .botao-gratis:active {
+    transform: translateY(1px) scale(0.97);
+  }
+
+  .hero-section {
+    padding-top: 130px;
+  }
+</style>
+
+<!-- SCRIPTS DE INTERATIVIDADE -->
+<script>
+  function setupPageEffects() {
+    // 1. Rolagem do cabeçalho
+    const header = document.getElementById('mainHeader');
+    if (header) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    }
+
+    // 2. Efeito Tilt 3D da Hero Section
     const box = document.getElementById('boxInterativa');
     const card = document.getElementById('cardTilt');
     const badgeFat = document.getElementById('badgeFat');
@@ -108,7 +296,6 @@ import Layout from '../layouts/Layout.astro';
         const rotateY = ((x - centerX) / centerX) * 15;
         
         card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        
         badgeFat.style.transform = `translate3d(${-rotateY * 1.5}px, ${-rotateX * 1.5}px, 50px)`;
         badgePed.style.transform = `translate3d(${rotateY * 2}px, ${rotateX * 2}px, 70px)`;
       });
@@ -129,6 +316,8 @@ import Layout from '../layouts/Layout.astro';
         badgePed.style.transition = 'none';
       });
     }
-  </script>
+  }
 
-</Layout>
+  document.addEventListener('astro:page-load', setupPageEffects);
+  setupPageEffects();
+</script>

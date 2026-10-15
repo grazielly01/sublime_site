@@ -1,0 +1,360 @@
+---
+const steps = [
+  {
+    number: '1',
+    image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80',
+    title: 'Cadastre suas receitas',
+    description: 'Insira os ingredientes de sua preferência. A plataforma calcula o custo unitário e atualiza automaticamente se houver oscilação de preços de insumos.'
+  },
+  {
+    number: '2',
+    image: 'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=800&q=80',
+    title: 'Receba os pedidos',
+    description: 'Lance as encomendas em segundos de acordo com as datas e canais de contato. O Doce Gestão cria lembretes de compra e início de produção.'
+  },
+  {
+    number: '3',
+    image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=800&q=80',
+    title: 'Acompanhe tudo',
+    description: 'Tenha visibilidade total do forno, relatórios de fluxo financeiro em tempo real e entrega controlada para garantir a melhor experiência para os clientes.'
+  }
+];
+---
+
+<section id="como-funciona" class="how-it-works-section">
+  <div class="how-it-works-container">
+    
+    <!-- Cabeçalho Interativo da Seção -->
+    <div class="section-header" id="headerInteractive">
+      <span class="section-subtitle" id="subTitleInteractive">
+        <span class="dot"></span> FLUXO SIMPLIFICADO
+      </span>
+
+      <h2 class="section-title" id="titleInteractive">
+        <span class="word">Como</span> 
+        <span class="word">funciona</span> 
+        <span class="word">na</span> 
+        <span class="word">sua</span> 
+        <span class="word highlight">rotina</span>
+      </h2>
+
+      <p class="section-description">
+        Fizemos uma ferramenta fluida e amigável que se adapta à dinâmica real de uma confeitaria agitada.
+      </p>
+    </div>
+
+    <!-- Grid dos 3 Passos Interativos -->
+    <div class="steps-grid">
+      {steps.map((step, index) => (
+        <div class="step-card" data-step={index}>
+          <div class="step-image-wrap">
+            <img 
+              src={step.image} 
+              alt={step.title} 
+              loading="lazy" 
+              decoding="async"
+            />
+          </div>
+
+          <div class="step-content">
+            <div class="step-number">{step.number}</div>
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-description">{step.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .how-it-works-section {
+    padding: 96px 24px;
+    background-color: var(--cor-fundo, #ebe2dc);
+    perspective: 1000px;
+  }
+
+  .how-it-works-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* CABEÇALHO INTERATIVO */
+  .section-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 56px auto;
+    cursor: default;
+    user-select: none;
+    transform-style: preserve-3d;
+    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  /* SUBTÍTULO INTERATIVO */
+  .section-subtitle {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #B28374;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 6px 16px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(178, 131, 116, 0.2);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .section-subtitle .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #B28374;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  .section-header:hover .section-subtitle {
+    letter-spacing: 2.5px;
+    color: #3A141A;
+    background-color: #ffffff;
+    border-color: #3A141A;
+    box-shadow: 0 4px 15px rgba(58, 20, 26, 0.12);
+    transform: translateY(-2px) scale(1.03);
+  }
+
+  .section-header:hover .section-subtitle .dot {
+    background-color: #3A141A;
+    transform: scale(1.4);
+  }
+
+  /* TÍTULO PRINCIPAL INTERATIVO */
+  .section-title {
+    font-family: var(--fonte-titulo, 'Instrument Serif', serif);
+    font-size: 52px;
+    font-weight: 400;
+    color: var(--cor-principal, #3A141A);
+    margin-bottom: 16px;
+    line-height: 1.15;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .section-title .word {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease, text-shadow 0.3s ease;
+  }
+
+  /* Efeito Hover Individual por Palavra */
+  .section-title .word:hover {
+    transform: translateY(-4px) scale(1.08) rotate(-1deg);
+    color: #522027;
+    text-shadow: 0 8px 20px rgba(82, 32, 39, 0.2);
+  }
+
+  .section-title .word.highlight {
+    position: relative;
+    font-style: italic;
+  }
+
+  .section-title .word.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #B28374;
+    border-radius: 2px;
+    opacity: 0.5;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .section-title .word.highlight:hover::after {
+    opacity: 1;
+    transform: scaleY(1.5);
+    background-color: #3A141A;
+  }
+
+  .section-description {
+    color: var(--cor-texto-secundario, #6B5255);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+    transition: color 0.3s ease;
+  }
+
+  .section-header:hover .section-description {
+    color: #3A141A;
+  }
+
+  /* GRID DOS CARDS */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  @media (max-width: 960px) {
+    .steps-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .section-title {
+      font-size: 40px;
+    }
+  }
+
+  /* CARDS INTERATIVOS */
+  .step-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+    border-radius: 20px;
+    padding: 12px;
+    transform-style: preserve-3d;
+  }
+
+  .step-card:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 15px 30px rgba(58, 20, 26, 0.08);
+  }
+
+  .step-image-wrap {
+    width: 100%;
+    height: 220px;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: rgba(58, 20, 26, 0.05);
+    box-shadow: 0 10px 25px rgba(58, 20, 26, 0.06);
+  }
+
+  .step-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .step-card:hover .step-image-wrap img {
+    transform: scale(1.08);
+  }
+
+  .step-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .step-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--cor-principal, #3A141A);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .step-card:hover .step-number {
+    transform: scale(1.15) translateZ(10px);
+    background-color: #522027;
+    box-shadow: 0 6px 16px rgba(58, 20, 26, 0.25);
+  }
+
+  .step-title {
+    font-family: var(--fonte-titulo, 'Instrument Serif', serif);
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--cor-principal, #3A141A);
+    margin: 0;
+    transition: color 0.3s ease;
+  }
+
+  .step-card:hover .step-title {
+    color: #522027;
+  }
+
+  .step-description {
+    color: var(--cor-texto-secundario, #6B5255);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+  }
+</style>
+
+<!-- JS PURO PARA O EFEITO PARALLAX TILT NO CABEÇALHO E NOS CARDS -->
+<script>
+  function setupHeaderAndCardsEffects() {
+    // 1. Efeito Tilt Parallax no Cabeçalho
+    const header = document.getElementById('headerInteractive');
+
+    if (header) {
+      header.addEventListener('mousemove', (e: MouseEvent) => {
+        const rect = header.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((centerY - y) / centerY) * 6;
+        const rotateY = ((x - centerX) / centerX) * 6;
+
+        header.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+
+      header.addEventListener('mouseleave', () => {
+        header.style.transition = 'transform 0.5s ease';
+        header.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      });
+
+      header.addEventListener('mouseenter', () => {
+        header.style.transition = 'none';
+      });
+    }
+
+    // 2. Efeito Tilt nos Cards
+    const cards = document.querySelectorAll<HTMLElement>('.step-card');
+
+    cards.forEach((card) => {
+      card.addEventListener('mousemove', (e: MouseEvent) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((centerY - y) / centerY) * 8;
+        const rotateY = ((x - centerX) / centerX) * 8;
+
+        card.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transition = 'transform 0.5s ease, background-color 0.3s ease, box-shadow 0.3s ease';
+        card.style.transform = 'rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
+
+      card.addEventListener('mouseenter', () => {
+        card.style.transition = 'none';
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', setupHeaderAndCardsEffects);
+  setupHeaderAndCardsEffects();
+</script>

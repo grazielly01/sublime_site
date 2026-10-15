@@ -2,7 +2,7 @@
 @import url('https://googleapis.com');
 
 /* Reset básico para o site carregar idêntico em qualquer navegador */
-* {
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -19,17 +19,35 @@
     --fonte-corpo: 'Plus Jakarta Sans', sans-serif;
 }
 
-body {
+html, body {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
     background-color: var(--cor-fundo);
     color: var(--cor-principal);
     font-family: var(--fonte-corpo);
 }
 
-/* --- ESTILIZAÇÃO DO HEADER --- */
+/* --- ESTILIZAÇÃO DO HEADER (FIXO DE PONTA A PONTA) --- */
 .header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    z-index: 1000;
+    background-color: rgba(235, 226, 220, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.header-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 24px;
+    padding: 20px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -45,15 +63,20 @@ body {
 }
 
 .logo-circulo {
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(135deg, #E29A9A, var(--cor-principal));
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-family: serif;
+    border: 1px solid var(--cor-borda);
+}
+
+.logo-foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .menu-navegacao {
@@ -105,7 +128,7 @@ body {
 .hero-section {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 64px 24px 96px 24px;
+    padding: 120px 24px 96px 24px;
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     gap: 48px;
@@ -117,7 +140,7 @@ body {
         grid-template-columns: 1fr;
         text-align: center;
     }
-    .menu-navegacao { display: none; } /* Esconde o menu no mobile por enquanto */
+    .menu-navegacao { display: none; }
 }
 
 .hero-conteudo {
@@ -227,7 +250,7 @@ body {
 .container-foto img {
     width: 100%;
     height: 100%;
-    object-cover: cover;
+    object-fit: cover;
 }
 
 /* --- ÁREA INTERATIVA DA IMAGEM --- */
@@ -235,14 +258,12 @@ body {
     display: flex;
     justify-content: flex-end;
     position: relative;
-    /* Ativa a perspectiva 3D para o efeito de inclinação */
     perspective: 1000px; 
 }
 
-/* O container principal que vai inclinar com o JavaScript */
 .card-interativo-wrap {
     position: relative;
-    width: 1000%;
+    width: 100%;
     max-width: 440px;
     transform-style: preserve-3d;
     transition: transform 0.1s ease-out;
@@ -255,7 +276,6 @@ body {
     overflow: hidden;
     border: 1px solid var(--cor-borda);
     box-shadow: 0 30px 60px rgba(58, 20, 26, 0.12);
-    /* Força a imagem a saltar um pouco para fora da tela no efeito 3D */
     transform: translateZ(20px); 
 }
 
@@ -263,7 +283,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    pointer-events: none; /* Evita que o clique arraste a imagem */
+    pointer-events: none;
 }
 
 /* --- CARDS FLUTUANTES INTERATIVOS --- */
@@ -278,17 +298,16 @@ body {
     flex-direction: column;
     gap: 4px;
     transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
-    pointer-events: none; /* Faz o mouse passar através do card para não travar a inclinação */
+    pointer-events: none;
 }
 
-/* Card 1: Faturamento (Canto superior direito) */
 .badge-faturamento {
     top: -20px;
     right: -20px;
     background: #6E1B24;
     color: white;
     border: none;
-    transform: translateZ(50px); /* Salta mais para fora no efeito 3D */
+    transform: translateZ(50px);
 }
 
 .badge-faturamento .sub {
@@ -304,12 +323,11 @@ body {
     font-weight: 700;
 }
 
-/* Card 2: Pedido Confirmado (Canto inferior esquerdo) */
 .badge-pedido {
     bottom: -20px;
     left: -40px;
-    min-w: 220px;
-    transform: translateZ(70px); /* Salta ainda mais para fora */
+    min-width: 220px;
+    transform: translateZ(70px);
 }
 
 .badge-pedido .status {
@@ -333,21 +351,4 @@ body {
     font-size: 14px;
     font-weight: 600;
     color: var(--cor-principal);
-}
-
-.logo-circulo {
-    width: 36px; /* Aumentei sutilmente para dar mais destaque à foto */
-    height: 36px;
-    border-radius: 50%;
-    overflow: hidden; /* Corta qualquer parte da foto que sair do círculo */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--cor-borda); /* Uma bordinha fina para dar acabamento */
-}
-
-.logo-foto {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Garante que a foto preencha o círculo sem ficar distorcida ou esticada */
 }
