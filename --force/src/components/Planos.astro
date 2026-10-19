@@ -1,0 +1,424 @@
+---
+const planos = [
+  {
+    nome: 'Plano Brigadeiro',
+    descricao: 'Ideal para confeiteiras iniciantes, que produzem de forma autónoma sob encomenda direta.',
+    preco: '49',
+    periodo: '/mês',
+    isPopular: false,
+    recursos: [
+      'Até 50 encomendas por mês',
+      'Gestão de Receitas básica',
+      'Até 100 clientes cadastrados',
+      'Suporte via WhatsApp',
+      'Fluxo de caixa básico'
+    ]
+  },
+  {
+    nome: 'Plano Bolo',
+    descricao: 'Para confeitarias em crescimento, que buscam automatizar estoque e planejar fornadas semanais.',
+    preco: '99',
+    periodo: '/mês',
+    isPopular: true,
+    seloPopular: 'MAIS ESCOLHIDO',
+    recursos: [
+      'Encomendas ilimitadas',
+      'Estoque de insumos inteligente',
+      'Fichas técnicas avançadas',
+      'Alertas de ingredientes críticos',
+      'Suporte prioritário e relatórios'
+    ]
+  },
+  {
+    nome: 'Plano Confeitaria',
+    descricao: 'A solução ideal para confeitarias de grande porte com múltiplos funcionários e alto volume de produção.',
+    preco: '199',
+    periodo: '/mês',
+    isPopular: false,
+    recursos: [
+      'Múltiplos usuários integrados',
+      'Relatórios de lucratividade real',
+      'Histórico completo de compras',
+      'Suporte VIP de plantão',
+      'Integrações dedicadas'
+    ]
+  }
+];
+---
+
+<section id="preco" class="planos-section">
+  <div class="planos-container">
+    
+    <!-- Cabeçalho Interativo da Seção -->
+    <div class="section-header" id="planosHeaderInteractive">
+      <span class="section-subtitle">
+        <span class="dot"></span> PLANOS FLEXÍVEIS
+      </span>
+
+      <h2 class="section-title">
+        <span class="word">O</span> 
+        <span class="word">investimento</span> 
+        <span class="word">certo</span> 
+        <span class="word">para</span> 
+        <span class="word">o</span> 
+        <span class="word">seu</span> 
+        <span class="word highlight">ateliê</span>
+      </h2>
+
+      <p class="section-description">
+        Sem taxas ocultas, alterne de plano a qualquer momento. Escolha a versão perfeita para o seu volume de produção atual.
+      </p>
+    </div>
+
+    <!-- Grid dos 3 Cards de Planos -->
+    <div class="planos-grid">
+      {planos.map((plano) => (
+        <div class={`plano-card ${plano.isPopular ? 'popular-card' : ''}`}>
+          
+          {plano.isPopular && (
+            <div class="popular-badge">{plano.seloPopular}</div>
+          )}
+
+          <div class="card-header">
+            <h3 class="plano-nome">{plano.nome}</h3>
+            <p class="plano-descricao">{plano.descricao}</p>
+            
+            <div class="plano-preco-wrap">
+              <span class="currency">R$</span>
+              <span class="price">{plano.preco}</span>
+              <span class="period">{plano.periodo}</span>
+            </div>
+          </div>
+
+          <div class="card-divider"></div>
+
+          <!-- Lista de Funcionalidades do Plano -->
+          <ul class="recursos-list">
+            {plano.recursos.map((recurso) => (
+              <li>
+                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>{recurso}</span>
+              </li>
+            ))}
+          </ul>
+
+          <a href="#cadastro" class={`btn-selecionar-plano ${plano.isPopular ? 'btn-popular' : ''}`}>
+            Selecionar plano
+          </a>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .planos-section {
+    padding: 96px 24px;
+    background-color: var(--cor-fundo, #ebe2dc);
+    perspective: 1000px;
+  }
+
+  .planos-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* CABEÇALHO INTERATIVO */
+  .section-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 64px auto;
+    cursor: default;
+    user-select: none;
+    transform-style: preserve-3d;
+    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .section-subtitle {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #B28374;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 6px 16px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(178, 131, 116, 0.2);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .section-subtitle .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #B28374;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  .section-header:hover .section-subtitle {
+    letter-spacing: 2.5px;
+    color: #3A141A;
+    background-color: #ffffff;
+    border-color: #3A141A;
+    box-shadow: 0 4px 15px rgba(58, 20, 26, 0.12);
+    transform: translateY(-2px) scale(1.03);
+  }
+
+  .section-header:hover .section-subtitle .dot {
+    background-color: #3A141A;
+    transform: scale(1.4);
+  }
+
+  .section-title {
+    font-family: var(--fonte-titulo, 'Instrument Serif', serif);
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--cor-principal, #3A141A);
+    margin-bottom: 16px;
+    line-height: 1.15;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .section-title .word {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease, text-shadow 0.3s ease;
+  }
+
+  .section-title .word:hover {
+    transform: translateY(-4px) scale(1.08) rotate(-1deg);
+    color: #522027;
+    text-shadow: 0 8px 20px rgba(82, 32, 39, 0.2);
+  }
+
+  .section-description {
+    color: var(--cor-texto-secundario, #6B5255);
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 400;
+    transition: color 0.3s ease;
+  }
+
+  .section-header:hover .section-description {
+    color: #3A141A;
+  }
+
+  /* GRID DOS CARDS DE PLANOS */
+  .planos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    align-items: stretch;
+  }
+
+  @media (max-width: 960px) {
+    .planos-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+
+  .plano-card {
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 24px;
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid var(--cor-borda, #EFE2DA);
+    box-shadow: 0 10px 30px rgba(58, 20, 26, 0.04);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+
+  .plano-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 45px rgba(58, 20, 26, 0.12);
+    border-color: rgba(58, 20, 26, 0.2);
+  }
+
+  /* ESTILO DO PLANO POPULAR (BOLO) */
+  .plano-card.popular-card {
+    background-color: #FAF4F0;
+    border: 2px solid var(--cor-principal, #3A141A);
+    box-shadow: 0 15px 40px rgba(58, 20, 26, 0.1);
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: -14px;
+    right: 28px;
+    background-color: var(--cor-principal, #3A141A);
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    text-transform: uppercase;
+  }
+
+  /* CABEÇALHO DO CARD */
+  .plano-nome {
+    font-family: var(--fonte-titulo, 'Instrument Serif', serif);
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--cor-principal, #3A141A);
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+  }
+
+  .plano-card:hover .plano-nome {
+    color: #522027;
+  }
+
+  .plano-descricao {
+    font-size: 13px;
+    color: var(--cor-texto-secundario, #6B5255);
+    line-height: 1.5;
+    min-height: 58px;
+    margin-bottom: 24px;
+  }
+
+  .plano-preco-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    color: var(--cor-principal, #3A141A);
+    margin-bottom: 24px;
+  }
+
+  .plano-preco-wrap .currency {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .plano-preco-wrap .price {
+    font-family: var(--fonte-titulo, 'Instrument Serif', serif);
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .plano-preco-wrap .period {
+    font-size: 14px;
+    color: var(--cor-texto-secundario, #6B5255);
+  }
+
+  .card-divider {
+    height: 1px;
+    background-color: var(--cor-borda, #EFE2DA);
+    margin-bottom: 24px;
+  }
+
+  /* LISTA DE RECURSOS */
+  .recursos-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .recursos-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--cor-principal, #3A141A);
+  }
+
+  .check-icon {
+    width: 16px;
+    height: 16px;
+    color: #B28374;
+    flex-shrink: 0;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .plano-card:hover .check-icon {
+    color: var(--cor-principal, #3A141A);
+    transform: scale(1.15);
+  }
+
+  /* BOTÃO SELECIONAR PLANO */
+  .btn-selecionar-plano {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: 50px;
+    border: 1px solid var(--cor-borda, #EFE2DA);
+    background-color: #ffffff;
+    color: var(--cor-principal, #3A141A);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+  }
+
+  .btn-selecionar-plano:hover {
+    background-color: var(--cor-fundo, #ebe2dc);
+    transform: translateY(-2px);
+  }
+
+  .btn-selecionar-plano.btn-popular {
+    background-color: var(--cor-principal, #3A141A);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 14px rgba(58, 20, 26, 0.2);
+  }
+
+  .btn-selecionar-plano.btn-popular:hover {
+    background-color: #522027;
+    box-shadow: 0 6px 18px rgba(58, 20, 26, 0.3);
+  }
+</style>
+
+<!-- SCRIPT PARALLAX INTERATIVO DO CABEÇALHO -->
+<script>
+  function setupPlanosHeaderEffects() {
+    const header = document.getElementById('planosHeaderInteractive');
+
+    if (header) {
+      header.addEventListener('mousemove', (e: MouseEvent) => {
+        const rect = header.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((centerY - y) / centerY) * 6;
+        const rotateY = ((x - centerX) / centerX) * 6;
+
+        header.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+
+      header.addEventListener('mouseleave', () => {
+        header.style.transition = 'transform 0.5s ease';
+        header.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      });
+
+      header.addEventListener('mouseenter', () => {
+        header.style.transition = 'none';
+      });
+    }
+  }
+
+  document.addEventListener('astro:page-load', setupPlanosHeaderEffects);
+  setupPlanosHeaderEffects();
+</script>

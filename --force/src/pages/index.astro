@@ -3,19 +3,21 @@ import Layout from '../layouts/Layout.astro';
 import Features from '../components/Features.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import Team from '../components/Team.astro';
+import Planos from '../components/Planos.astro';
+import Faq from '../components/Faq.astro';
+import Rodape from '../components/Rodape.astro';
 
-// Importação direta das imagens dos assets locais
+// Importação das imagens
 import SublimeLogo from '../assets/Sublime_logo.png';
 import HeroImage from '../assets/images.jpg';
 ---
 
 <Layout title="Sublime | A receita para uma gestão mais doce">
 
-  <!-- CABEÇALHO / NAVBAR ORGANIZADO -->
+  <!-- CABEÇALHO / NAVBAR -->
   <header class="header-container" id="mainHeader">
     <div class="header-content">
       
-      <!-- LOGO SUBLIME -->
       <a href="#" class="logo-area">
         <div class="logo-circulo">
           <img 
@@ -27,16 +29,14 @@ import HeroImage from '../assets/images.jpg';
         <span class="logo-texto">Sublime</span>
       </a>
 
-      <!-- NAVEGAÇÃO PRINCIPAL -->
       <nav class="menu-navegacao">
         <a href="#funcionalidades" class="nav-link">Funcionalidades</a>
         <a href="#como-funciona" class="nav-link">Como Funciona</a>
         <a href="#depoimentos" class="nav-link">Depoimentos</a>
-        <a href="#preco" class="nav-link">Preço</a>
+        <a href="#preco" class="nav-link">Preços</a>
         <a href="#faq" class="nav-link">FAQ</a>
       </nav>
 
-      <!-- BOTÕES DE AÇÃO DO HEADER -->
       <div class="header-botoes">
         <a href="#login" class="link-entrar">Entrar</a>
         <a href="#cadastro" class="botao-gratis">Começar Grátis</a>
@@ -47,7 +47,6 @@ import HeroImage from '../assets/images.jpg';
 
   <!-- SEÇÃO HERO -->
   <main class="hero-section">
-    
     <div class="hero-conteudo">
       <div class="tag-erp">
         O primeiro Sistema Inteligente feito para Fábricas de confeitaria
@@ -71,41 +70,34 @@ import HeroImage from '../assets/images.jpg';
     <!-- COLUNA DA DIREITA: Estrutura Interativa -->
     <div class="hero-imagem-area" id="boxInterativa">
       <div class="card-interativo-wrap" id="cardTilt">
-        
-        <!-- Card Flutuante 1: Faturamento -->
         <div class="badge-flutuante badge-faturamento" id="badgeFat">
           <span class="sub">Faturamento hoje</span>
           <span class="val">R$ 2.490</span>
         </div>
 
-        <!-- Foto Principal -->
         <div class="container-foto">
-          <img 
-            src={HeroImage.src} 
-            alt="Confeitaria de Alto Padrão - Sublime" 
-          />
+          <img src={HeroImage.src} alt="Confeitaria de Alto Padrão - Sublime" />
         </div>
 
-        <!-- Card Flutuante 2: Pedido -->
         <div class="badge-flutuante badge-pedido" id="badgePed">
           <span class="status">Pedido confirmado</span>
           <span class="info">Cupcakes R$ 89,00</span>
         </div>
-
       </div>
     </div>
-
   </main>
 
-  <!-- SEÇÕES DO SITE -->
+  <!-- SEÇÕES COMPLETA DA LANDING PAGE -->
   <Features />
   <HowItWorks />
   <Team />
+  <Planos />
+  <Faq />
+  <Rodape />
 
 </Layout>
 
 <style>
-  /* ESTILOS DO CABEÇALHO */
   .header-container {
     position: fixed;
     top: 0;
@@ -262,10 +254,8 @@ import HeroImage from '../assets/images.jpg';
   }
 </style>
 
-<!-- SCRIPTS DE INTERATIVIDADE -->
 <script>
   function setupPageEffects() {
-    // 1. Rolagem do cabeçalho
     const header = document.getElementById('mainHeader');
     if (header) {
       window.addEventListener('scroll', () => {
@@ -277,7 +267,6 @@ import HeroImage from '../assets/images.jpg';
       });
     }
 
-    // 2. Efeito Tilt 3D da Hero Section
     const box = document.getElementById('boxInterativa');
     const card = document.getElementById('cardTilt');
     const badgeFat = document.getElementById('badgeFat');

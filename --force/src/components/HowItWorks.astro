@@ -10,7 +10,7 @@ const steps = [
     number: '2',
     image: 'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=800&q=80',
     title: 'Receba os pedidos',
-    description: 'Lance as encomendas em segundos de acordo com as datas e canais de contato. O Doce Gestão cria lembretes de compra e início de produção.'
+    description: 'Lance as encomendas em segundos de acordo com as datas e canais de contato. O Sublime cria lembretes de compra e início de produção.'
   },
   {
     number: '3',
@@ -295,10 +295,10 @@ const steps = [
   }
 </style>
 
-<!-- JS PURO PARA O EFEITO PARALLAX TILT NO CABEÇALHO E NOS CARDS -->
+
 <script>
   function setupHeaderAndCardsEffects() {
-    // 1. Efeito Tilt Parallax no Cabeçalho
+
     const header = document.getElementById('headerInteractive');
 
     if (header) {
@@ -326,7 +326,7 @@ const steps = [
       });
     }
 
-    // 2. Efeito Tilt nos Cards
+   
     const cards = document.querySelectorAll<HTMLElement>('.step-card');
 
     cards.forEach((card) => {
